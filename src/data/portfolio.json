@@ -1,0 +1,359 @@
+{
+    "personal": {
+        "name": "Mirza Zohair Ali Baig",
+        "title": "First-Year Computer Science Engineering Student",
+        "tagline": "Futuristic Portfolio of Mirza Zohair Ali Baig",
+        "email": "rehansvcat@gmail.com",
+        "phone": "+91 7416352424",
+        "linkedin": "https://www.linkedin.com/in/mirza-zohair-ali-baig-024749382/",
+        "github": "https://github.com/imzohair",
+        "website": "https://imzohair.github.io/",
+        "location": "Hyderabad, Telangana, India"
+    },
+    "about": {
+        "summary": "I am a highly motivated and enthusiastic first-year engineering student with a strong foundation in Web Development, C, C++, and automation. As a passionate and proactive learner, I am eager to apply my problem-solving abilities and leadership skills to a hands-on technical role within a dynamic team.",
+        "highlights": [
+            "Passionate about technology and innovation",
+            "Strong leadership background",
+            "Web development enthusiast",
+            "Team player with excellent communication skills"
+        ]
+    },
+    "skills": {
+        "languages": {
+            "label": "Programming Languages",
+            "icon": "code",
+            "items": [
+                "C",
+                "C++",
+                "Python",
+                "JavaScript",
+                "HTML",
+                "CSS"
+            ]
+        },
+        "webDev": {
+            "label": "Web Development",
+            "icon": "globe",
+            "items": [
+                "HTML5",
+                "CSS3",
+                "JavaScript",
+                "React",
+                "Node.js",
+                "Git"
+            ]
+        },
+        "tools": {
+            "label": "Tools & Technologies",
+            "icon": "tool",
+            "items": [
+                "VS Code",
+                "Git",
+                "GitHub",
+                "Linux",
+                "Automation"
+            ]
+        },
+        "soft": {
+            "label": "Soft Skills",
+            "icon": "users",
+            "items": [
+                "Leadership",
+                "Communication",
+                "Problem Solving",
+                "Teamwork",
+                "Time Management"
+            ]
+        }
+    },
+    "experience": [
+        {
+            "id": "exp1",
+            "title": "Class Representative",
+            "organization": "Muffakham Jah College of Engineering",
+            "period": "2024 - Present",
+            "type": "Leadership",
+            "description": "Serve as the primary point of contact between students and faculty. Represent student interests and coordinate class activities.",
+            "achievements": [
+                "Primary liaison between students and faculty",
+                "Coordinated class activities and events",
+                "Resolved student concerns effectively"
+            ]
+        },
+        {
+            "id": "exp2",
+            "title": "Project Contributor",
+            "organization": "JPNCE College Website",
+            "period": "2023",
+            "type": "Development",
+            "description": "Assisted in the development and maintenance of the college's official website. Designed and implemented front-end components using HTML and CSS.",
+            "achievements": [
+                "Developed front-end components",
+                "Implemented responsive design",
+                "Contributed to website functionality"
+            ]
+        },
+        {
+            "id": "exp3",
+            "title": "Captain",
+            "organization": "Telangana U19 Football Team",
+            "period": "2022 - 2023",
+            "type": "Sports Leadership",
+            "description": "Motivated and supported team members to achieve collective goals in a competitive environment.",
+            "achievements": [
+                "Led team in competitive matches",
+                "Mentored junior players",
+                "Fostered team unity and spirit"
+            ]
+        },
+        {
+            "id": "exp4",
+            "title": "Head Boy",
+            "organization": "Solitaire Global School, Hyderabad",
+            "period": "2021 - 2022",
+            "type": "Leadership",
+            "description": "Acted as the primary student leader and liaison between students and faculty. Organized and led school-wide initiatives.",
+            "achievements": [
+                "Primary student representative",
+                "Led school-wide initiatives",
+                "Improved student engagement"
+            ]
+        },
+        {
+            "id": "exp5",
+            "title": "House Captain",
+            "organization": "Solitaire Global School - Blue House",
+            "period": "2020 - 2021",
+            "type": "Leadership",
+            "description": "Demonstrated strong communication and teamwork skills while leading the house team.",
+            "achievements": [
+                "Led Blue House team",
+                "Organized house activities",
+                "Promoted teamwork and unity"
+            ]
+        }
+    ],
+    "education": [
+        {
+            "id": "edu1",
+            "degree": "B.E. in Computer Science Engineering",
+            "institution": "Muffakham Jah College of Engineering",
+            "location": "Hyderabad, Telangana",
+            "period": "2024 - Present",
+            "status": "Currently Pursuing",
+            "year": "First Year",
+            "coursework": [
+                "Programming",
+                "Engineering Principles",
+                "Calculus",
+                "Data Structures"
+            ],
+            "gpa": null
+        },
+        {
+            "id": "edu2",
+            "degree": "Higher Secondary Education",
+            "institution": "Solitaire Global School",
+            "location": "Hyderabad, Telangana",
+            "period": "2022 - 2024",
+            "status": "Completed",
+            "year": null,
+            "coursework": [
+                "Physics",
+                "Chemistry",
+                "Mathematics",
+                "Computer Science"
+            ],
+            "gpa": null
+        }
+    ],
+    "achievements": [
+        {
+            "id": "ach_explorer",
+            "name": "City Explorer",
+            "description": "Visit all 5 districts",
+            "icon": "compass",
+            "xp": 100,
+            "category": "exploration"
+        },
+        {
+            "id": "ach_tower",
+            "name": "Tower Ascent",
+            "description": "Enter the Zohvector Tower",
+            "icon": "tower",
+            "xp": 150,
+            "category": "exploration"
+        },
+        {
+            "id": "ach_collector",
+            "name": "Data Collector",
+            "description": "Collect all 10 Data Fragments",
+            "icon": "gem",
+            "xp": 200,
+            "category": "collection"
+        },
+        {
+            "id": "ach_speed",
+            "name": "Speed Demon",
+            "description": "Fly at maximum speed for 10 seconds",
+            "icon": "zap",
+            "xp": 50,
+            "category": "flight"
+        },
+        {
+            "id": "ach_altitude",
+            "name": "High Flyer",
+            "description": "Reach maximum altitude",
+            "icon": "arrow-up",
+            "xp": 75,
+            "category": "flight"
+        },
+        {
+            "id": "ach_panels",
+            "name": "Information Seeker",
+            "description": "Open all information panels",
+            "icon": "info",
+            "xp": 100,
+            "category": "interaction"
+        },
+        {
+            "id": "ach_first_flight",
+            "name": "First Flight",
+            "description": "Take your first flight",
+            "icon": "plane",
+            "xp": 25,
+            "category": "flight"
+        },
+        {
+            "id": "ach_night_owl",
+            "name": "Night Owl",
+            "description": "Explore the city for 5 minutes",
+            "icon": "moon",
+            "xp": 50,
+            "category": "exploration"
+        }
+    ],
+    "badges": [
+        {
+            "id": "badge_explorer",
+            "name": "Explorer",
+            "description": "Visited all districts",
+            "color": "#00E5FF",
+            "tier": "gold"
+        },
+        {
+            "id": "badge_pilot",
+            "name": "Ace Pilot",
+            "description": "Master of drone flight",
+            "color": "#A066FF",
+            "tier": "platinum"
+        },
+        {
+            "id": "badge_collector",
+            "name": "Collector",
+            "description": "Found all data fragments",
+            "color": "#00C2D1",
+            "tier": "gold"
+        },
+        {
+            "id": "badge_scholar",
+            "name": "Scholar",
+            "description": "Viewed all information",
+            "color": "#2F6BFF",
+            "tier": "silver"
+        }
+    ],
+    "dataFragments": [
+        {
+            "id": "frag1",
+            "position": [
+                15,
+                3,
+                10
+            ],
+            "collected": false
+        },
+        {
+            "id": "frag2",
+            "position": [
+                -20,
+                5,
+                25
+            ],
+            "collected": false
+        },
+        {
+            "id": "frag3",
+            "position": [
+                30,
+                8,
+                -15
+            ],
+            "collected": false
+        },
+        {
+            "id": "frag4",
+            "position": [
+                -35,
+                4,
+                5
+            ],
+            "collected": false
+        },
+        {
+            "id": "frag5",
+            "position": [
+                5,
+                12,
+                -35
+            ],
+            "collected": false
+        },
+        {
+            "id": "frag6",
+            "position": [
+                25,
+                6,
+                35
+            ],
+            "collected": false
+        },
+        {
+            "id": "frag7",
+            "position": [
+                -15,
+                10,
+                -20
+            ],
+            "collected": false
+        },
+        {
+            "id": "frag8",
+            "position": [
+                0,
+                25,
+                0
+            ],
+            "collected": false
+        },
+        {
+            "id": "frag9",
+            "position": [
+                40,
+                7,
+                20
+            ],
+            "collected": false
+        },
+        {
+            "id": "frag10",
+            "position": [
+                -30,
+                9,
+                -30
+            ],
+            "collected": false
+        }
+    ]
+}

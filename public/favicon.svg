@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 180" width="64" height="64">
+  <defs>
+    <linearGradient id="glowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00E5FF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00C2D1;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Hexagon outline -->
+  <polygon 
+    points="100,10 180,50 180,130 100,170 20,130 20,50" 
+    fill="#010409"
+    stroke="url(#glowGrad)" 
+    stroke-width="4"
+    filter="url(#glow)"
+  />
+  
+  <!-- Drone body (diamond) -->
+  <polygon 
+    points="100,55 130,90 100,125 70,90" 
+    fill="#00C2D1"
+    filter="url(#glow)"
+  />
+  
+  <!-- Rotor circles -->
+  <circle cx="60" cy="60" r="14" fill="none" stroke="#00E5FF" stroke-width="3"/>
+  <circle cx="140" cy="60" r="14" fill="none" stroke="#00E5FF" stroke-width="3"/>
+  <circle cx="60" cy="120" r="14" fill="none" stroke="#00E5FF" stroke-width="3"/>
+  <circle cx="140" cy="120" r="14" fill="none" stroke="#00E5FF" stroke-width="3"/>
+  
+  <!-- Rotor dots -->
+  <circle cx="60" cy="60" r="4" fill="#00E5FF"/>
+  <circle cx="140" cy="60" r="4" fill="#00E5FF"/>
+  <circle cx="60" cy="120" r="4" fill="#00E5FF"/>
+  <circle cx="140" cy="120" r="4" fill="#00E5FF"/>
+</svg>

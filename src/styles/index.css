@@ -1,0 +1,600 @@
+/* ============================================
+   ZOHVECTOR - Futuristic Portfolio Styles
+   ============================================ */
+
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* CSS Variables - Brand Colors */
+:root {
+  /* Primary Colors */
+  --deep-black: #010409;
+  --neon-cyan: #00E5FF;
+  --teal-glow: #00C2D1;
+  --electric-blue: #2F6BFF;
+  --purple-accent: #A066FF;
+
+  /* Background Colors */
+  --panel-bg: #0B0F17;
+  --panel-bg-alpha: rgba(11, 15, 23, 0.85);
+  --glass-bg: rgba(10, 15, 24, 0.55);
+
+  /* Text Colors */
+  --text-light: #E6F1FF;
+  --text-muted: #9BAEC8;
+  --text-dim: #5C6B7A;
+
+  /* Gradients */
+  --gradient-cyan: linear-gradient(135deg, #00E5FF 0%, #00C2D1 100%);
+  --gradient-blue: linear-gradient(135deg, #2F6BFF 0%, #A066FF 100%);
+  --gradient-xp: linear-gradient(90deg, #00E5FF 0%, #2F6BFF 100%);
+
+  /* Glow Effects */
+  --glow-cyan: 0 0 20px rgba(0, 229, 255, 0.5), 0 0 40px rgba(0, 229, 255, 0.3);
+  --glow-purple: 0 0 20px rgba(160, 102, 255, 0.5), 0 0 40px rgba(160, 102, 255, 0.3);
+  --glow-blue: 0 0 20px rgba(47, 107, 255, 0.5), 0 0 40px rgba(47, 107, 255, 0.3);
+
+  /* Fonts */
+  --font-title: 'Orbitron', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 24px;
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-normal: 300ms ease;
+  --transition-slow: 500ms ease;
+}
+
+/* Reset */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--deep-black);
+  color: var(--text-light);
+  line-height: 1.6;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  overflow: visible;
+}
+
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-title);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.05em;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+h4 {
+  font-size: 1.25rem;
+}
+
+h5 {
+  font-size: 1rem;
+}
+
+h6 {
+  font-size: 0.875rem;
+}
+
+p {
+  color: var(--text-muted);
+}
+
+a {
+  color: var(--neon-cyan);
+  text-decoration: none;
+  transition: var(--transition-fast);
+}
+
+a:hover {
+  color: var(--teal-glow);
+  text-shadow: var(--glow-cyan);
+}
+
+/* ============================================
+   Glass Panel Styles
+   ============================================ */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 229, 255, 0.2);
+  border-radius: var(--radius-lg);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.glass-panel-glow {
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    0 0 20px rgba(0, 229, 255, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* ============================================
+   Neon Button Styles
+   ============================================ */
+.neon-button {
+  font-family: var(--font-title);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--neon-cyan);
+  background: transparent;
+  border: 2px solid var(--neon-cyan);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  cursor: pointer;
+  transition: var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+}
+
+.neon-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 229, 255, 0.2), transparent);
+  transition: var(--transition-normal);
+}
+
+.neon-button:hover {
+  background: rgba(0, 229, 255, 0.1);
+  box-shadow: var(--glow-cyan);
+  transform: translateY(-2px);
+}
+
+.neon-button:hover::before {
+  left: 100%;
+}
+
+.neon-button:active {
+  transform: translateY(0);
+}
+
+.neon-button-filled {
+  background: var(--gradient-cyan);
+  color: var(--deep-black);
+  border: none;
+}
+
+.neon-button-filled:hover {
+  background: var(--teal-glow);
+}
+
+/* ============================================
+   XP Bar Styles
+   ============================================ */
+.xp-bar-container {
+  width: 200px;
+  height: 8px;
+  background: rgba(0, 229, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 229, 255, 0.3);
+}
+
+.xp-bar-fill {
+  height: 100%;
+  background: var(--gradient-xp);
+  border-radius: 4px;
+  transition: width 0.5s ease;
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+}
+
+/* ============================================
+   Scrollbar Styles
+   ============================================ */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--panel-bg);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--neon-cyan);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--teal-glow);
+}
+
+/* ============================================
+   Animation Keyframes
+   ============================================ */
+@keyframes pulse-glow {
+
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.3);
+  }
+
+  50% {
+    box-shadow: 0 0 40px rgba(0, 229, 255, 0.6);
+  }
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes scan-line {
+  0% {
+    transform: translateY(-100%);
+  }
+
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+@keyframes neon-flicker {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  41% {
+    opacity: 1;
+  }
+
+  42% {
+    opacity: 0.8;
+  }
+
+  43% {
+    opacity: 1;
+  }
+
+  45% {
+    opacity: 0.3;
+  }
+
+  46% {
+    opacity: 1;
+  }
+}
+
+@keyframes draw-border {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes data-stream {
+  0% {
+    background-position: 0% 0%;
+  }
+
+  100% {
+    background-position: 0% 100%;
+  }
+}
+
+/* ============================================
+   Utility Classes
+   ============================================ */
+.text-gradient-cyan {
+  background: var(--gradient-cyan);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-blue {
+  background: var(--gradient-blue);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.glow-text {
+  text-shadow: 0 0 10px currentColor, 0 0 20px currentColor;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-rotate {
+  animation: rotate 10s linear infinite;
+}
+
+/* ============================================
+   HUD Specific Styles
+   ============================================ */
+.hud-container {
+  position: fixed;
+  z-index: 100;
+  pointer-events: none;
+}
+
+.hud-container>* {
+  pointer-events: auto;
+}
+
+/* ============================================
+   Panel Styles
+   ============================================ */
+.panel-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(1, 4, 9, 0.7);
+  backdrop-filter: blur(4px);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.panel-content {
+  max-width: 800px;
+  max-height: 80vh;
+  width: 90%;
+  overflow-y: auto;
+  padding: var(--spacing-xl);
+}
+
+/* ============================================
+   Hexagon Badge Styles
+   ============================================ */
+.hexagon-badge {
+  width: 60px;
+  height: 52px;
+  background: var(--gradient-cyan);
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-normal);
+}
+
+.hexagon-badge:hover {
+  transform: scale(1.1);
+  box-shadow: var(--glow-cyan);
+}
+
+.hexagon-badge.locked {
+  background: var(--panel-bg);
+  opacity: 0.5;
+}
+
+/* ============================================
+   2D Mode Specific Styles
+   ============================================ */
+.mode-2d {
+  overflow-y: auto;
+  height: 100vh;
+}
+
+.mode-2d section {
+  min-height: 100vh;
+  padding: var(--spacing-2xl);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ============================================
+   Responsive Breakpoints
+   ============================================ */
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+  }
+
+  .panel-content {
+    padding: var(--spacing-md);
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 12px;
+  }
+
+  .neon-button {
+    padding: var(--spacing-xs) var(--spacing-md);
+    font-size: 0.75rem;
+  }
+}
+
+/* ============================================
+   Loading & Trailer Styles
+   ============================================ */
+.fullscreen-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: var(--deep-black);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.loading-text {
+  font-family: var(--font-title);
+  font-size: 1rem;
+  color: var(--neon-cyan);
+  letter-spacing: 0.2em;
+  margin-top: var(--spacing-xl);
+  animation: neon-flicker 3s infinite;
+}
+
+/* ============================================
+   Achievement Notification
+   ============================================ */
+.achievement-notification {
+  position: fixed;
+  top: 100px;
+  right: 20px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--neon-cyan);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-md) var(--spacing-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  z-index: 300;
+  animation: slide-in-right 0.5s ease;
+  box-shadow: var(--glow-cyan);
+}
+
+/* ============================================
+   Canvas & 3D Container
+   ============================================ */
+.canvas-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+}
+
+.canvas-container canvas {
+  display: block;
+}

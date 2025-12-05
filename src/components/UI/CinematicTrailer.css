@@ -1,0 +1,145 @@
+.trailer-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #010409;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    cursor: pointer;
+}
+
+.trailer-phase {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+}
+
+.awakening-dot {
+    width: 20px;
+    height: 20px;
+    background: #00E5FF;
+    border-radius: 50%;
+    box-shadow:
+        0 0 20px #00E5FF,
+        0 0 40px #00E5FF,
+        0 0 60px #00E5FF;
+}
+
+.hexagon-logo {
+    filter: drop-shadow(0 0 10px #00E5FF);
+}
+
+.hexagon-logo.small {
+    position: absolute;
+    bottom: 30%;
+}
+
+.hexagon-logo.rotating {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.hexagon-outline {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+}
+
+.drone-icon {
+    filter: drop-shadow(0 0 5px #00C2D1);
+}
+
+.brand-name {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2rem;
+    color: #00E5FF;
+    letter-spacing: 0.3em;
+    margin-top: 30px;
+    text-shadow:
+        0 0 10px #00E5FF,
+        0 0 20px #00E5FF,
+        0 0 40px rgba(0, 229, 255, 0.5);
+}
+
+.city-grid-container {
+    position: absolute;
+    width: 100%;
+    height: 40%;
+    bottom: 0;
+    overflow: hidden;
+}
+
+.city-grid {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+}
+
+.grid-building {
+    position: absolute;
+    bottom: 0;
+    width: 3%;
+    background: linear-gradient(to top,
+            transparent,
+            rgba(0, 229, 255, 0.1) 10%,
+            rgba(0, 229, 255, 0.2) 50%,
+            rgba(0, 229, 255, 0.3));
+    border: 1px solid rgba(0, 229, 255, 0.3);
+    border-bottom: none;
+    transform-origin: bottom;
+}
+
+.grid-building::before {
+    content: '';
+    position: absolute;
+    top: 10%;
+    left: 20%;
+    right: 20%;
+    height: 2px;
+    background: #00E5FF;
+    box-shadow:
+        0 10px 0 #00E5FF,
+        0 20px 0 #00E5FF,
+        0 30px 0 #00E5FF;
+    opacity: 0.5;
+}
+
+.hover-online {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.2rem;
+    color: #00C2D1;
+    letter-spacing: 0.2em;
+    margin-top: 20px;
+    text-shadow: 0 0 10px #00C2D1;
+}
+
+.dissolve-particles {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+}
+
+.particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #00E5FF;
+    border-radius: 50%;
+    box-shadow: 0 0 5px #00E5FF;
+}
+
+.skip-text {
+    position: absolute;
+    bottom: 40px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    color: #9BAEC8;
+    letter-spacing: 0.1em;
+}
