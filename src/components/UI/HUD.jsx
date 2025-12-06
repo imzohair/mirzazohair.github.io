@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import useGameStore from '../../stores/gameStore';
+import useMobile from '../../hooks/useMobile';
 import './HUD.css';
 
 const HUD = ({ nearestBuilding }) => {
@@ -11,6 +12,7 @@ const HUD = ({ nearestBuilding }) => {
         collectedFragments,
     } = useGameStore();
 
+    const isMobile = useMobile(); // Use the hook to check for mobile
     const xpProgress = getXPProgress();
 
     if (!showHUD) return null;
@@ -122,8 +124,8 @@ const HUD = ({ nearestBuilding }) => {
                         transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                     >
                         <div className="interact-prompt-content">
-                            <span className="interact-key">E</span>
-                            <span className="interact-text">to view</span>
+                            <span className="interact-key">{isMobile ? '◎' : 'E'}</span>
+                            <span className="interact-text">{isMobile ? 'tap to view' : 'to view'}</span>
                             <span className="interact-label">{nearestBuilding.toUpperCase()}</span>
                         </div>
                     </motion.div>

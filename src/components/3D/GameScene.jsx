@@ -15,7 +15,10 @@ const SmoothDrone = ({ onPositionChange }) => {
     const targetRotationRef = useRef(0);
     const isMovingRef = useRef(false);
 
-    const mobileControls = useGameStore(state => state.mobileControls);
+
+
+    // Remove subscription to avoid re-renders, access directly in useFrame
+    // const mobileControls = useGameStore(state => state.mobileControls);
 
     const handleKeyDown = (e) => {
         const key = e.key.toLowerCase();
@@ -53,7 +56,8 @@ const SmoothDrone = ({ onPositionChange }) => {
         const keys = keysPressed.current;
 
         // Combine Keyboard & Mobile Inputs
-        // Mobile axes: y is inverted on screen (up is negative), but for 3D forward we want negative Z.
+        const mobileControls = useGameStore.getState().mobileControls;
+
         // Joystick up (negative Y) -> Forward (Negative Z)
         // Joystick down (positive Y) -> Backward (Positive Z)
         // Joystick left (negative X) -> Turn Left
@@ -69,7 +73,7 @@ const SmoothDrone = ({ onPositionChange }) => {
         const maxSpeed = 0.3;
 
         // Check if any movement is happening
-        const isMoving = Math.abs(inputForward) > 0.1 || Math.abs(inputTurn) > 0.1 || inputUp || inputDown;
+        const isMoving = Math.abs(inputForward) > 0.05 || Math.abs(inputTurn) > 0.05 || inputUp || inputDown;
 
         // Start/stop drone hum based on movement
         if (isMoving && !isMovingRef.current) {
@@ -81,7 +85,7 @@ const SmoothDrone = ({ onPositionChange }) => {
         }
 
         // Smooth rotation
-        if (Math.abs(inputTurn) > 0.1) {
+        if (Math.abs(inputTurn) > 0.05) {
             targetRotationRef.current += inputTurn * turnSpeed; // Note: inputTurn is already signed correctly
         }
 
@@ -95,7 +99,7 @@ const SmoothDrone = ({ onPositionChange }) => {
             Math.cos(rotationRef.current)
         );
 
-        if (Math.abs(inputForward) > 0.1) {
+        if (Math.abs(inputForward) > 0.05) {
             velocityRef.current.x += forward.x * acceleration * inputForward;
             velocityRef.current.z += forward.z * acceleration * inputForward;
         }

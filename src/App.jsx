@@ -118,6 +118,22 @@ function App() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [gamePhase, activePanel, nearestBuilding, openPanel, closePanel]);
 
+  // Mobile Interaction Listener
+  useEffect(() => {
+    const unsubscribe = useGameStore.subscribe(
+      (state) => state.mobileControls.buttons.interact,
+      (isPressed) => {
+        if (isPressed && nearestBuilding && !activePanel) {
+          import('./utils/soundManager').then(({ default: soundManager }) => {
+            soundManager.panelOpen();
+          });
+          openPanel(nearestBuilding);
+        }
+      }
+    );
+    return () => unsubscribe();
+  }, [nearestBuilding, activePanel, openPanel]);
+
   return (
     <div className="app">
       {/* Trailer Phase */}
@@ -138,8 +154,6 @@ function App() {
             onPanelTrigger={handlePanelTrigger}
             onPanelLeave={handlePanelLeave}
           />
-          <HUD nearestBuilding={nearestBuilding} />
-
           <HUD nearestBuilding={nearestBuilding} />
           {isMobile && <MobileControls />}
 
