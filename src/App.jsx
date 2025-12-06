@@ -33,6 +33,7 @@ function App() {
   const activePanel = useGameStore(state => state.activePanel);
   const openPanel = useGameStore(state => state.openPanel);
   const closePanel = useGameStore(state => state.closePanel);
+  const showMobileControls = useGameStore(state => state.mobileControls.showControls);
   const isMobile = useMobile();
 
   const [loadingProgress, setLoadingProgress] = useState(0);
@@ -155,7 +156,7 @@ function App() {
             onPanelLeave={handlePanelLeave}
           />
           <HUD nearestBuilding={nearestBuilding} />
-          {isMobile && <MobileControls />}
+          {(isMobile || showMobileControls) && <MobileControls />}
 
           {/* Panels */}
           <AboutPanel

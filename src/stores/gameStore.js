@@ -89,7 +89,8 @@ export const useGameStore = create(
                     up: false,
                     down: false,
                     interact: false,
-                }
+                },
+                showControls: false // Manual override
             },
 
             // Current UI
@@ -119,6 +120,13 @@ export const useGameStore = create(
                         ...state.mobileControls.buttons,
                         [button]: pressed
                     }
+                }
+            })),
+
+            toggleMobileControls: () => set((state) => ({
+                mobileControls: {
+                    ...state.mobileControls,
+                    showControls: !state.mobileControls.showControls
                 }
             })),
 

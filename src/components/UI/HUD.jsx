@@ -10,6 +10,8 @@ const HUD = ({ nearestBuilding }) => {
         setGamePhase,
         getXPProgress,
         collectedFragments,
+        toggleMobileControls,
+        mobileControls
     } = useGameStore();
 
     const isMobile = useMobile(); // Use the hook to check for mobile
@@ -111,6 +113,14 @@ const HUD = ({ nearestBuilding }) => {
                 >
                     2D MODE
                 </button>
+                <button
+                    className="hud-button"
+                    onClick={toggleMobileControls}
+                    style={{ marginLeft: '10px' }}
+                    title="Toggle Touch Controls"
+                >
+                    🎮
+                </button>
             </motion.div>
 
             {/* Center Interaction Prompt */}
@@ -139,7 +149,7 @@ const HUD = ({ nearestBuilding }) => {
                 animate={{ opacity: 0.6 }}
                 transition={{ delay: 1, duration: 1 }}
             >
-                Collect diamonds and explore • v1.2 • Mobile: {isMobile ? 'ON' : 'OFF'}
+                Collect diamonds and explore • v1.3 • Mobile: {isMobile ? 'ON' : 'OFF'}
             </motion.div>
         </div>
     );
