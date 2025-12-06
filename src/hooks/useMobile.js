@@ -10,8 +10,10 @@ const useMobile = () => {
             const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
             const isSmallScreen = window.innerWidth < 1024; // Increased threshold
 
-            // If explicit mobile UA, always true. Otherwise check touch + screen size.
-            setIsMobile(isMobileUA || (isTouch && isSmallScreen));
+            const isForceMobile = new URLSearchParams(window.location.search).has('mobile');
+
+            // If explicit mobile UA or Force Mobile param, always true. Otherwise check touch + screen size.
+            setIsMobile(isForceMobile || isMobileUA || (isTouch && isSmallScreen));
         };
 
         checkMobile();

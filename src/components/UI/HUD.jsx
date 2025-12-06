@@ -139,7 +139,7 @@ const HUD = ({ nearestBuilding }) => {
                 animate={{ opacity: 0.6 }}
                 transition={{ delay: 1, duration: 1 }}
             >
-                Collect diamonds and explore • ESC to close panels • v1.1
+                Collect diamonds and explore • v1.2 • Mobile: {isMobile ? 'ON' : 'OFF'}
             </motion.div>
         </div>
     );

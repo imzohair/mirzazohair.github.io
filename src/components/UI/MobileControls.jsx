@@ -124,7 +124,7 @@ const MobileControls = () => {
                     right: 0;
                     height: 150px;
                     pointer-events: none;
-                    z-index: 1000;
+                    z-index: 9999;
                     display: flex;
                     justify-content: space-between;
                     padding: 0 40px;
