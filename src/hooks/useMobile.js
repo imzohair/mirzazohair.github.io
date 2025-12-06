@@ -5,9 +5,13 @@ const useMobile = () => {
 
     useEffect(() => {
         const checkMobile = () => {
+            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            const isMobileUA = /android|ipad|iphone|ipod/i.test(userAgent.toLowerCase());
             const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-            const isSmallScreen = window.innerWidth < 768; // Standard tablet/mobile breakpoint
-            setIsMobile(isTouch && isSmallScreen);
+            const isSmallScreen = window.innerWidth < 1024; // Increased threshold
+
+            // If explicit mobile UA, always true. Otherwise check touch + screen size.
+            setIsMobile(isMobileUA || (isTouch && isSmallScreen));
         };
 
         checkMobile();
