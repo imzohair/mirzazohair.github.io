@@ -1,11 +1,13 @@
 import { useState, useEffect, useCallback } from 'react';
 import useGameStore from './stores/gameStore';
+import useMobile from './hooks/useMobile';
 
 // UI Components
 import CinematicTrailer from './components/UI/CinematicTrailer';
 import LoadingScreen from './components/UI/LoadingScreen';
 import IntroScreen from './components/UI/IntroScreen';
 import HUD from './components/UI/HUD';
+import MobileControls from './components/UI/MobileControls';
 import {
   AboutPanel,
   SkillsPanel,
@@ -31,6 +33,7 @@ function App() {
   const activePanel = useGameStore(state => state.activePanel);
   const openPanel = useGameStore(state => state.openPanel);
   const closePanel = useGameStore(state => state.closePanel);
+  const isMobile = useMobile();
 
   const [loadingProgress, setLoadingProgress] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -136,6 +139,9 @@ function App() {
             onPanelLeave={handlePanelLeave}
           />
           <HUD nearestBuilding={nearestBuilding} />
+
+          <HUD nearestBuilding={nearestBuilding} />
+          {isMobile && <MobileControls />}
 
           {/* Panels */}
           <AboutPanel

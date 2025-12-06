@@ -4,6 +4,7 @@ import { Stars, Text, Float } from '@react-three/drei';
 import * as THREE from 'three';
 import useGameStore from '../../stores/gameStore';
 import soundManager from '../../utils/soundManager';
+import useMobile from '../../hooks/useMobile';
 
 // Smooth Drone with SLOWER controls
 const SmoothDrone = ({ onPositionChange }) => {
@@ -14,27 +15,29 @@ const SmoothDrone = ({ onPositionChange }) => {
     const targetRotationRef = useRef(0);
     const isMovingRef = useRef(false);
 
+    const mobileControls = useGameStore(state => state.mobileControls);
+
+    const handleKeyDown = (e) => {
+        const key = e.key.toLowerCase();
+        if (key === 'w') keysPressed.current.w = true;
+        if (key === 'a') keysPressed.current.a = true;
+        if (key === 's') keysPressed.current.s = true;
+        if (key === 'd') keysPressed.current.d = true;
+        if (key === ' ') { e.preventDefault(); keysPressed.current.space = true; }
+        if (key === 'shift') keysPressed.current.shift = true;
+    };
+
+    const handleKeyUp = (e) => {
+        const key = e.key.toLowerCase();
+        if (key === 'w') keysPressed.current.w = false;
+        if (key === 'a') keysPressed.current.a = false;
+        if (key === 's') keysPressed.current.s = false;
+        if (key === 'd') keysPressed.current.d = false;
+        if (key === ' ') keysPressed.current.space = false;
+        if (key === 'shift') keysPressed.current.shift = false;
+    };
+
     useEffect(() => {
-        const handleKeyDown = (e) => {
-            const key = e.key.toLowerCase();
-            if (key === 'w') keysPressed.current.w = true;
-            if (key === 'a') keysPressed.current.a = true;
-            if (key === 's') keysPressed.current.s = true;
-            if (key === 'd') keysPressed.current.d = true;
-            if (key === ' ') { e.preventDefault(); keysPressed.current.space = true; }
-            if (key === 'shift') keysPressed.current.shift = true;
-        };
-
-        const handleKeyUp = (e) => {
-            const key = e.key.toLowerCase();
-            if (key === 'w') keysPressed.current.w = false;
-            if (key === 'a') keysPressed.current.a = false;
-            if (key === 's') keysPressed.current.s = false;
-            if (key === 'd') keysPressed.current.d = false;
-            if (key === ' ') keysPressed.current.space = false;
-            if (key === 'shift') keysPressed.current.shift = false;
-        };
-
         window.addEventListener('keydown', handleKeyDown);
         window.addEventListener('keyup', handleKeyUp);
         return () => {
@@ -48,12 +51,25 @@ const SmoothDrone = ({ onPositionChange }) => {
         if (!droneRef.current) return;
 
         const keys = keysPressed.current;
-        const acceleration = 0.1; // REDUCED by 30% more (was 0.15)
-        const turnSpeed = 0.025; // REDUCED slightly more
-        const maxSpeed = 0.3; // Lower max speed
 
-        // Check if any movement key is pressed
-        const isMoving = keys.w || keys.s || keys.a || keys.d || keys.space || keys.shift;
+        // Combine Keyboard & Mobile Inputs
+        // Mobile axes: y is inverted on screen (up is negative), but for 3D forward we want negative Z.
+        // Joystick up (negative Y) -> Forward (Negative Z)
+        // Joystick down (positive Y) -> Backward (Positive Z)
+        // Joystick left (negative X) -> Turn Left
+        // Joystick right (positive X) -> Turn Right
+
+        const inputForward = keys.w ? 1 : keys.s ? -1 : -mobileControls.joystick.y;
+        const inputTurn = keys.d ? -1 : keys.a ? 1 : -mobileControls.joystick.x;
+        const inputUp = keys.space || mobileControls.buttons.up;
+        const inputDown = keys.shift || mobileControls.buttons.down;
+
+        const acceleration = 0.1;
+        const turnSpeed = 0.025;
+        const maxSpeed = 0.3;
+
+        // Check if any movement is happening
+        const isMoving = Math.abs(inputForward) > 0.1 || Math.abs(inputTurn) > 0.1 || inputUp || inputDown;
 
         // Start/stop drone hum based on movement
         if (isMoving && !isMovingRef.current) {
@@ -65,8 +81,9 @@ const SmoothDrone = ({ onPositionChange }) => {
         }
 
         // Smooth rotation
-        if (keys.a) targetRotationRef.current += turnSpeed;
-        if (keys.d) targetRotationRef.current -= turnSpeed;
+        if (Math.abs(inputTurn) > 0.1) {
+            targetRotationRef.current += inputTurn * turnSpeed; // Note: inputTurn is already signed correctly
+        }
 
         // Lerp rotation for smoothness
         rotationRef.current = THREE.MathUtils.lerp(rotationRef.current, targetRotationRef.current, 0.1);
@@ -78,18 +95,15 @@ const SmoothDrone = ({ onPositionChange }) => {
             Math.cos(rotationRef.current)
         );
 
-        if (keys.w) {
-            velocityRef.current.x += forward.x * acceleration;
-            velocityRef.current.z += forward.z * acceleration;
+        if (Math.abs(inputForward) > 0.1) {
+            velocityRef.current.x += forward.x * acceleration * inputForward;
+            velocityRef.current.z += forward.z * acceleration * inputForward;
         }
-        if (keys.s) {
-            velocityRef.current.x -= forward.x * acceleration;
-            velocityRef.current.z -= forward.z * acceleration;
-        }
-        if (keys.space) {
+
+        if (inputUp) {
             velocityRef.current.y += acceleration;
         }
-        if (keys.shift) {
+        if (inputDown) {
             velocityRef.current.y -= acceleration;
         }
 
@@ -394,6 +408,7 @@ const GameScene = ({ onPanelTrigger, onPanelLeave }) => {
     const openPanel = useGameStore(state => state.openPanel);
     const closePanel = useGameStore(state => state.closePanel);
     const activePanel = useGameStore(state => state.activePanel);
+    const isMobile = useMobile();
 
     const buildings = [
         { pos: [0, 0, 0], label: 'ABOUT', color: '#00E5FF', type: 'about' },
@@ -445,9 +460,9 @@ const GameScene = ({ onPanelTrigger, onPanelLeave }) => {
     return (
         <div className="canvas-container">
             <Canvas
-                shadows
-                camera={{ position: [0, 15, 25], fov: 65, near: 0.1, far: 500 }}
-                dpr={[1, 1.5]}
+                shadows={!isMobile} // Disable shadows on mobile
+                camera={{ position: [0, 15, 25], fov: isMobile ? 75 : 65, near: 0.1, far: 500 }}
+                dpr={isMobile ? [1, 1] : [1, 1.5]} // Lower DPR on mobile
                 gl={{ antialias: true, powerPreference: 'high-performance' }}
             >
                 <Suspense fallback={null}>
@@ -457,16 +472,16 @@ const GameScene = ({ onPanelTrigger, onPanelLeave }) => {
                         position={[60, 100, 60]}
                         intensity={0.9}
                         color="#ffffff"
-                        castShadow
-                        shadow-mapSize-width={2048}
-                        shadow-mapSize-height={2048}
+                        castShadow={!isMobile} // Disable shadow casting
+                        shadow-mapSize-width={isMobile ? 512 : 2048}
+                        shadow-mapSize-height={isMobile ? 512 : 2048}
                     />
                     <hemisphereLight intensity={0.3} color="#00E5FF" groundColor="#0a0a15" />
 
                     {/* Sky */}
                     <color attach="background" args={['#030308']} />
-                    <fog attach="fog" args={['#030308', 60, 180]} />
-                    <Stars radius={180} depth={100} count={3000} factor={5} fade speed={0.4} />
+                    <fog attach="fog" args={['#030308', 60, isMobile ? 120 : 180]} />
+                    <Stars radius={180} depth={100} count={isMobile ? 1000 : 3000} factor={5} fade speed={0.4} />
 
                     {/* Ground - better material */}
                     <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]} receiveShadow>

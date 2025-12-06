@@ -81,6 +81,17 @@ export const useGameStore = create(
                 totalDistance: 0,
             },
 
+            // Mobile Controls State
+            mobileControls: {
+                joystick: { x: 0, y: 0 },
+                isMoving: false,
+                buttons: {
+                    up: false,
+                    down: false,
+                    interact: false,
+                }
+            },
+
             // Current UI
             activePanel: null,
             showHUD: true,
@@ -91,6 +102,25 @@ export const useGameStore = create(
             toggleSound: () => set((state) => ({ soundEnabled: !state.soundEnabled })),
             setMusicVolume: (vol) => set({ musicVolume: vol }),
             setSfxVolume: (vol) => set({ sfxVolume: vol }),
+
+            // Mobile Control Actions
+            setMobileJoystick: (data) => set((state) => ({
+                mobileControls: {
+                    ...state.mobileControls,
+                    joystick: data,
+                    isMoving: data.x !== 0 || data.y !== 0
+                }
+            })),
+
+            setMobileButton: (button, pressed) => set((state) => ({
+                mobileControls: {
+                    ...state.mobileControls,
+                    buttons: {
+                        ...state.mobileControls.buttons,
+                        [button]: pressed
+                    }
+                }
+            })),
 
             addXP: (amount, reason) => {
                 const newXP = get().xp + amount;
